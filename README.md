@@ -102,11 +102,6 @@ SkillForge-AI/
 ├── index.html
 ├── style.css
 ├── script.js
-├── assets/
-│   ├── images
-│   ├── icons
-│   └── illustrations
-│
 └── README.md
 ```
 
@@ -131,18 +126,6 @@ index.html
 in your browser.
 
 No installation or backend setup is required.
-
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-* Home Page
-* Career Roadmaps
-* Technology Explorer
-* AI Project Generator
-* Resume & Portfolio Section
 
 ---
 
