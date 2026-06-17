@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillForge AI — Build Your Future With AI-Powered Learning</title>
+  <meta name="description" content="SkillForge AI helps students discover career roadmaps in Software Development, AI, Data Science, Cybersecurity, Cloud, and UI/UX — with detailed project ideas, resources, and resume guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Scroll progress bar -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="loader">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Skill<span>Forge</span>AI</p>
+  </div>
+
+  <!-- Navbar -->
+  <header class="nav glass">
+    <a href="#home" class="logo">Skill<span>Forge</span>AI</a>
+    <nav class="nav-links">
+      <a href="#roadmaps">Roadmaps</a>
+      <a href="#tech">Tech</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#resources">Resources</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileSidebar">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner reveal">
+      <span class="pill glass">🚀 AI-Powered Career Guidance for Students</span>
+      <h1 class="hero-title">
+        <span class="line">Build Your Future</span>
+        <span class="line connector">With</span>
+        <span class="line gradient-text shimmer">AI-Powered Learning</span>
+      </h1>
+      <p class="lead">SkillForge AI helps students and beginners become industry-ready with curated roadmaps, detailed technology guides, personalized project ideas, and modern learning resources.</p>
+      <div class="hero-cta">
+        <a href="#roadmaps" class="btn btn-primary">Explore Roadmaps</a>
+        <a href="#projects" class="btn btn-ghost glass">Generate a Project</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat glass"><h3 data-counter="12000">0</h3><p>Learners Guided</p></div>
+        <div class="stat glass"><h3 data-counter="50">0</h3><p>Roadmaps & Tracks</p></div>
+        <div class="stat glass"><h3 data-counter="300">0</h3><p>Project Ideas</p></div>
+        <div class="stat glass"><h3 data-counter="98">0</h3><p>% Satisfaction</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Roadmaps -->
+  <section id="roadmaps" class="section">
+    <div class="section-head reveal">
+      <h2>Career <span class="gradient-text">Roadmaps</span></h2>
+      <p>Step-by-step guidance for the most in-demand tech careers — with skills, projects, tools, salary, and internship tips.</p>
+    </div>
+    <div class="toolbar reveal">
+      <input id="roadmapSearch" type="text" placeholder="🔍 Search a career..." class="input glass" aria-label="Search career roadmaps" />
+      <div class="filters" id="roadmapFilters" role="tablist">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="dev">Development</button>
+        <button class="chip" data-filter="ai">AI / Data</button>
+        <button class="chip" data-filter="ops">Cloud / Security</button>
+        <button class="chip" data-filter="design">Design</button>
+      </div>
+    </div>
+    <div id="roadmapGrid" class="grid roadmap-grid"></div>
+  </section>
+
+  <!-- Tech Explorer -->
+  <section id="tech" class="section">
+    <div class="section-head reveal">
+      <h2>Technology <span class="gradient-text">Explorer</span></h2>
+      <p>Click any technology to open a complete learning guide — overview, skills, projects, interview questions, and official resources.</p>
+    </div>
+    <div class="toolbar reveal">
+      <input id="techSearch" type="text" placeholder="🔍 Search a technology..." class="input glass" aria-label="Search technologies" />
+    </div>
+    <div id="techGrid" class="grid tech-grid"></div>
+  </section>
+
+  <!-- AI Project Ideas Generator -->
+  <section id="projects" class="section">
+    <div class="section-head reveal">
+      <h2>AI Project <span class="gradient-text">Idea Generator</span></h2>
+      <p>Fill out as much (or as little) as you'd like — we'll craft a personalized project blueprint for you.</p>
+    </div>
+    <div class="ideas-card glass reveal">
+      <form id="ideaForm" class="ideas-form" onsubmit="event.preventDefault(); generateProject();">
+        <div class="form-grid">
+          <label>Your Name <span class="muted small">(optional)</span>
+            <input class="input" type="text" id="pgName" placeholder="e.g. Sanskruti" />
+          </label>
+          <label>Skill Level
+            <select class="input" id="pgLevel">
+              <option value="">Any</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </label>
+          <label>Technologies Known <span class="muted small">(comma-separated)</span>
+            <input class="input" type="text" id="pgTech" placeholder="e.g. HTML, React, Python" />
+          </label>
+          <label>Interests
+            <input class="input" type="text" id="pgInterests" placeholder="e.g. health, finance, education" />
+          </label>
+          <label>Project Category
+            <select class="input" id="pgCategory">
+              <option value="">Any</option>
+              <option value="web">Web App</option>
+              <option value="ai">AI / ML</option>
+              <option value="mobile">Mobile App</option>
+              <option value="data">Data / Analytics</option>
+              <option value="security">Cybersecurity</option>
+              <option value="cloud">Cloud / DevOps</option>
+            </select>
+          </label>
+          <label>Time Per Week
+            <select class="input" id="pgTime">
+              <option value="">Any</option>
+              <option>1–3 hours</option>
+              <option>4–7 hours</option>
+              <option>8–15 hours</option>
+              <option>15+ hours</option>
+            </select>
+          </label>
+          <label class="full">Career Goal
+            <input class="input" type="text" id="pgGoal" placeholder="e.g. land a frontend internship" />
+          </label>
+        </div>
+        <div class="ideas-controls">
+          <button class="btn btn-primary" type="submit">Generate My Project ✨</button>
+          <button class="btn btn-ghost glass" type="button" id="pgReset">Reset</button>
+        </div>
+      </form>
+      <div id="ideaOutput" class="idea-output" aria-live="polite">
+        <p class="muted">Your personalized project blueprint will appear here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume / Portfolio / GitHub -->
+  <section id="resume" class="section">
+    <div class="section-head reveal">
+      <h2>Resume, Portfolio & <span class="gradient-text">GitHub</span></h2>
+      <p>Practical, recruiter-tested checklists for building a profile that actually gets shortlisted.</p>
+    </div>
+    <div class="grid checklist-grid">
+      <div class="card glass reveal">
+        <h3>📄 Resume Checklist</h3>
+        <ul>
+          <li>ATS friendly (no tables / columns / images)</li>
+          <li>Strong Skills section grouped by category</li>
+          <li>Projects section with links & impact metrics</li>
+          <li>Education with relevant coursework</li>
+          <li>Certifications from trusted platforms</li>
+          <li>1 page, action verbs, no fluff</li>
+        </ul>
+      </div>
+      <div class="card glass reveal">
+        <h3>🎨 Portfolio Checklist</h3>
+        <ul>
+          <li>Clear About Me with photo & focus area</li>
+          <li>3–5 polished, deployed Projects</li>
+          <li>Working Contact Form or email link</li>
+          <li>Fully Responsive Design on mobile</li>
+          <li>Fast load time & accessible colors</li>
+          <li>Custom domain + favicon</li>
+        </ul>
+      </div>
+      <div class="card glass reveal">
+        <h3>🐙 GitHub Checklist</h3>
+        <ul>
+          <li>Profile README with intro, stack & links</li>
+          <li>Pinned Projects (6 best repos)</li>
+          <li>Proper Documentation in every README</li>
+          <li>Meaningful Commits (not "update")</li>
+          <li>Live demo + screenshots in repo</li>
+          <li>Green contribution graph</li>
+        </ul>
+      </div>
+      <div class="card glass reveal danger">
+        <h3>🚫 Why Recruiters Reject Profiles</h3>
+        <ul>
+          <li>Generic resume not tailored to the JD</li>
+          <li>Projects without live demos or GitHub links</li>
+          <li>Empty / inactive GitHub profile</li>
+          <li>Spelling and grammar mistakes</li>
+          <li>Listing skills you can't explain</li>
+          <li>No measurable impact (numbers, results)</li>
+          <li>Cluttered design with multiple fonts/colors</li>
+          <li>Outdated tech stack & no learning evidence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="section">
+    <div class="section-head reveal">
+      <h2>Learning <span class="gradient-text">Resources</span></h2>
+      <p>Hand-picked free and premium resources by category.</p>
+    </div>
+    <div id="resourceGrid" class="grid resource-grid"></div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard" class="section">
+    <div class="section-head reveal">
+      <h2>Student Success <span class="gradient-text">Dashboard</span></h2>
+      <p>Track your learning journey at a glance.</p>
+    </div>
+    <div class="dashboard glass reveal">
+      <div class="dash-stats">
+        <div class="dash-stat"><h3 data-counter="24">0</h3><p>Skills Learned</p></div>
+        <div class="dash-stat"><h3 data-counter="12">0</h3><p>Projects Completed</p></div>
+        <div class="dash-stat"><h3 data-counter="78">0</h3><p>% Learning Progress</p></div>
+        <div class="dash-stat"><h3 data-counter="9">0</h3><p>Badges Earned</p></div>
+      </div>
+      <div class="progress" title="Overall progress">
+        <div class="progress-bar" style="--p:78%"></div>
+      </div>
+      <div class="badges">
+        <span class="badge glass">🏅 First Project</span>
+        <span class="badge glass">🔥 7-Day Streak</span>
+        <span class="badge glass">🤖 AI Explorer</span>
+        <span class="badge glass">☁️ Cloud Starter</span>
+        <span class="badge glass">🛡️ Security Aware</span>
+        <span class="badge glass">🎨 Design Thinker</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="section-head reveal">
+      <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+    </div>
+    <div id="faqList" class="faq"></div>
+  </section>
+
+  <!-- Contact + Rating -->
+  <section id="contact" class="section">
+    <div class="section-head reveal">
+      <h2>Get in <span class="gradient-text">Touch</span></h2>
+      <p>Have feedback or want to collaborate? Drop a message and rate your experience.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <form id="contactForm" class="contact glass reveal" onsubmit="event.preventDefault(); handleContact();" novalidate>
+        <div class="row">
+          <label class="field">
+            <span>Your Name</span>
+            <input class="input" type="text" id="cName" placeholder="e.g. Sanskruti Kothari" required />
+            <small class="err" id="errName"></small>
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input class="input" type="email" id="cEmail" placeholder="you@example.com" required />
+            <small class="err" id="errEmail"></small>
+          </label>
+        </div>
+        <label class="field">
+          <span>Message</span>
+          <textarea class="input" id="cMsg" rows="4" placeholder="Write at least 10 characters..." required></textarea>
+          <small class="err" id="errMsg"></small>
+        </label>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <p id="contactStatus" class="muted small"></p>
+      </form>
+
+      <div class="rating-card glass reveal">
+        <h3>⭐ Rate SkillForge AI</h3>
+        <p class="muted small">Tell us how we're doing.</p>
+        <div class="stars" id="starInput" role="radiogroup" aria-label="Rate the website">
+          <button type="button" class="star" data-v="1" aria-label="1 star">★</button>
+          <button type="button" class="star" data-v="2" aria-label="2 stars">★</button>
+          <button type="button" class="star" data-v="3" aria-label="3 stars">★</button>
+          <button type="button" class="star" data-v="4" aria-label="4 stars">★</button>
+          <button type="button" class="star" data-v="5" aria-label="5 stars">★</button>
+        </div>
+        <p id="ratingStatus" class="muted small"></p>
+        <div class="rating-summary">
+          <div><strong id="avgRating">0.0</strong><span class="muted small"> / 5 average</span></div>
+          <div><strong id="totalReviews">0</strong><span class="muted small"> total reviews</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="logo">Skill<span>Forge</span>AI</a>
+        <p class="muted">Built for the next generation of builders.</p>
+        <div class="socials">
+          <a href="https://github.com" target="_blank" rel="noopener" class="social" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.74 1.27 3.41.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.18.93-.26 1.92-.39 2.91-.39.99 0 1.98.13 2.91.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.42-2.7 5.4-5.27 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.86 3.38-1.86 3.61 0 4.27 2.38 4.27 5.47v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.51C0 23.22.79 24 1.77 24h20.45C23.2 24 24 23.22 24 22.25V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="mailto:hello@skillforge.ai" class="social" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#roadmaps">Roadmaps</a>
+        <a href="#tech">Technologies</a>
+        <a href="#projects">Project Ideas</a>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <a href="#resources">Resources</a>
+        <a href="#resume">Resume Tips</a>
+        <a href="#dashboard">Dashboard</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <p class="copyright">© <span id="year"></span> SkillForge AI. Crafted with passion by <strong>Sanskruti Kothari</strong>.</p>
+  </footer>
+
+  <button id="backToTop" class="back-top glass" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card glass">
+      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Sidebar -->
+  <aside id="mobileSidebar" class="mobile-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    <div class="sidebar-header">
+      <a href="#home" class="logo">Skill<span>Forge</span>AI</a>
+      <button id="closeSidebar" class="close-btn" aria-label="Close navigation menu">✕</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#roadmaps" class="sidebar-link">Roadmaps</a>
+      <a href="#tech" class="sidebar-link">Tech</a>
+      <a href="#projects" class="sidebar-link">Projects</a>
+      <a href="#resume" class="sidebar-link">Resume</a>
+      <a href="#resources" class="sidebar-link">Resources</a>
+      <a href="#dashboard" class="sidebar-link">Dashboard</a>
+      <a href="#faq" class="sidebar-link">FAQ</a>
+      <a href="#contact" class="sidebar-link">Contact</a>
+    </nav>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
